@@ -606,7 +606,7 @@
                         else if ([currentPath rangeOfString:@"/rss/channel/item/"].location == 0) {
                             if (processedText.length > 0) {
                                 //item.content = processedText;
-                                NSLog(@"%@ -> %@", currentPath, processedText);
+                                item[[currentPath substringFromIndex:[@"/rss/channel/item/" length]]] = processedText;
                             }
                             processed = YES;
                         }
@@ -640,7 +640,7 @@
                         else if ([currentPath rangeOfString:@"/rdf:RDF/item/"].location == 0) {
                             if (processedText.length > 0) {
                                 //item.content = processedText;
-                                NSLog(@"%@ -> %@", currentPath, processedText);
+                                item[[currentPath substringFromIndex:[@"/rdf:RDF/item/" length]]] = processedText;
                             }
                             processed = YES;
                         }
@@ -675,7 +675,7 @@
                         else if ([currentPath rangeOfString:@"/feed/entry/"].location == 0) {
                             if (processedText.length > 0) {
                                 //item.content = processedText;
-                                NSLog(@"%@ -> %@", currentPath, processedText);
+                                item[[currentPath substringFromIndex:[@"/feed/entry/" length]]] = processedText;
                             }
                             processed = YES;
                         }
