@@ -603,6 +603,13 @@
                         else if ([currentPath isEqualToString:@"/rss/channel/item/pubDate"]) { if (processedText.length > 0) item.date = [NSDate dateFromInternetDateTimeString:processedText formatHint:DateFormatHintRFC822]; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/enclosure"]) { [self createEnclosureFromAttributes:currentElementAttributes andAddToItem:item]; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rss/channel/item/dc:date"]) { if (processedText.length > 0) item.date = [NSDate dateFromInternetDateTimeString:processedText formatHint:DateFormatHintRFC3339]; processed = YES; }
+                        else if ([currentPath rangeOfString:@"/rss/channel/item/"].location == 0) {
+                            if (processedText.length > 0) {
+                                //item.content = processedText;
+                                NSLog(@"%@ -> %@", currentPath, processedText);
+                            }
+                            processed = YES;
+                        }
                     }
                     
                     // Info
@@ -630,6 +637,13 @@
                         else if ([currentPath isEqualToString:@"/rdf:RDF/item/dc:creator"]) { if (processedText.length > 0) item.author = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rdf:RDF/item/dc:date"]) { if (processedText.length > 0) item.date = [NSDate dateFromInternetDateTimeString:processedText formatHint:DateFormatHintRFC3339]; processed = YES; }
                         else if ([currentPath isEqualToString:@"/rdf:RDF/item/enc:enclosure"]) { [self createEnclosureFromAttributes:currentElementAttributes andAddToItem:item]; processed = YES; }
+                        else if ([currentPath rangeOfString:@"/rdf:RDF/item/"].location == 0) {
+                            if (processedText.length > 0) {
+                                //item.content = processedText;
+                                NSLog(@"%@ -> %@", currentPath, processedText);
+                            }
+                            processed = YES;
+                        }
                     }
                     
                     // Info
@@ -658,6 +672,13 @@
                         else if ([currentPath isEqualToString:@"/feed/entry/dc:creator"]) { if (processedText.length > 0) item.author = processedText; processed = YES; }
                         else if ([currentPath isEqualToString:@"/feed/entry/published"]) { if (processedText.length > 0) item.date = [NSDate dateFromInternetDateTimeString:processedText formatHint:DateFormatHintRFC3339]; processed = YES; }
                         else if ([currentPath isEqualToString:@"/feed/entry/updated"]) { if (processedText.length > 0) item.updated = [NSDate dateFromInternetDateTimeString:processedText formatHint:DateFormatHintRFC3339]; processed = YES; }
+                        else if ([currentPath rangeOfString:@"/feed/entry/"].location == 0) {
+                            if (processedText.length > 0) {
+                                //item.content = processedText;
+                                NSLog(@"%@ -> %@", currentPath, processedText);
+                            }
+                            processed = YES;
+                        }
                     }
                     
                     // Info
