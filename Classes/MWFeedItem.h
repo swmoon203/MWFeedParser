@@ -29,7 +29,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MWFeedItem : NSMutableDictionary <NSCoding> {
+@interface MWFeedItem : NSObject <NSCoding> {
 	
 	NSString *identifier; // Item identifier
 	NSString *title; // Item title
@@ -46,6 +46,7 @@
 	//     length: how big it is in bytes (NSNumber)
 	//     type: what its type is, a standard MIME type  (NSString)
 	NSArray *enclosures;
+    NSMutableDictionary *extra;
 
 }
 
@@ -59,4 +60,6 @@
 @property (nonatomic, copy) NSString *author;
 @property (nonatomic, copy) NSArray *enclosures;
 
+- (id)objectForKeyedSubscript:(NSString *)key;
+- (void)setObject:(id)obj forKeyedSubscript:(NSString *)key;
 @end

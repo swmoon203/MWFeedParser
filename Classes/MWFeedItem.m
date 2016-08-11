@@ -50,7 +50,7 @@
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)decoder {
-	if ((self = [super initWithCoder:decoder])) {
+    if ((self = [super init])) {
 		identifier = [decoder decodeObjectForKey:@"identifier"];
 		title = [decoder decodeObjectForKey:@"title"];
 		link = [decoder decodeObjectForKey:@"link"];
@@ -60,12 +60,12 @@
 		content = [decoder decodeObjectForKey:@"content"];
 		author = [decoder decodeObjectForKey:@"author"];
 		enclosures = [decoder decodeObjectForKey:@"enclosures"];
+        extra = [decoder decodeObjectForKey:@"extra"];
 	}
 	return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
-    [super encodeWithCoder:encoder];
 	if (identifier) [encoder encodeObject:identifier forKey:@"identifier"];
 	if (title) [encoder encodeObject:title forKey:@"title"];
 	if (link) [encoder encodeObject:link forKey:@"link"];
@@ -75,6 +75,15 @@
 	if (content) [encoder encodeObject:content forKey:@"content"];
 	if (author) [encoder encodeObject:author forKey:@"author"];
 	if (enclosures) [encoder encodeObject:enclosures forKey:@"enclosures"];
+    if (extra) [encoder encodeObject:extra forKey:@"extra"];
 }
 
+- (id)objectForKeyedSubscript:(NSString *)key {
+    return extra[key];
+}
+
+- (void)setObject:(id)obj forKeyedSubscript:(NSString *)key {
+    if (extra == nil) extra = [NSMutableDictionary dictionary];
+    extra[key] = obj;
+}
 @end
