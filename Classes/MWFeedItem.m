@@ -50,7 +50,7 @@
 #pragma mark NSCoding
 
 - (id)initWithCoder:(NSCoder *)decoder {
-	if ((self = [super init])) {
+	if ((self = [super initWithCoder:decoder])) {
 		identifier = [decoder decodeObjectForKey:@"identifier"];
 		title = [decoder decodeObjectForKey:@"title"];
 		link = [decoder decodeObjectForKey:@"link"];
@@ -65,6 +65,7 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
+    [super encodeWithCoder:encoder];
 	if (identifier) [encoder encodeObject:identifier forKey:@"identifier"];
 	if (title) [encoder encodeObject:title forKey:@"title"];
 	if (link) [encoder encodeObject:link forKey:@"link"];

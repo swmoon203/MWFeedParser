@@ -29,7 +29,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MWFeedItem : NSObject <NSCoding> {
+@interface MWFeedItem : NSMutableDictionary <NSCoding> {
 	
 	NSString *identifier; // Item identifier
 	NSString *title; // Item title
